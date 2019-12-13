@@ -1,0 +1,33 @@
+.navbar-brand {
+    font-family: titillium web,sans-serif !important;
+    font-size: 2.5rem !important;
+    color: #5cb85c !important;
+    font-weight: bold;
+    padding: 70px;
+    float: left;
+    padding-top: 1.35rem;
+    padding-bottom: .25rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 40px;
+}
+
+/*.a.nav-link.active{
+    background-color: black;
+    color: white;
+
+}*/
+
+/*nav-link.active{
+    background-color: black;
+    color: white;
+}
+*/
+.nav-item .active{ 
+    background-color:black;
+    color: white;
+}

@@ -1,0 +1,49 @@
+<div class="container" id = "pageMargin">
+
+  <h2 class="heading">Products List</h2>
+
+      <div class="col-lg-6 status_field">
+      <label>Status:</label>
+      <select class="form-control" id="selectBox" (change)="active($event.target.value)">
+        <option *ngFor="let item of status_data; let i = index" value="{{item.id}}">{{item.name}}</option>
+      </select>
+    </div>
+  <div class="row status_field">
+     <div class="col-md-6 col-sm-6 col-xs-6 push-top">
+      <label>DatePicker:</label>
+      <div class="row">
+        <div class="col-lg-4">
+          <input type="date" name="date" (change)="fromdate($event.target.value)" class="form-control"/>
+        </div>
+        <div class="col-lg-4">
+          <input type="date" name="date" (change)="enddate($event.target.value)" class="form-control"/>
+        </div>
+        <div class="col-lg-4">
+          <button class="btn btn-success" (click)="filter()">Filter</button>
+        </div>
+      </div>
+  </div>
+    <br/>
+  <table class="container" style="margin-bottom: 100px">
+    <tr>
+      <th>Id</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Status</th>
+      <th>Created Date</th>
+    </tr>
+    <tr *ngFor = "let product of data |filter:term | paginate: { itemsPerPage: 5, currentPage: p }">
+      <td [routerLink]="['products', product.id]">{{product.id}}</td>
+      <td [routerLink]="['products', product.id]">{{product.productname}}</td>
+      <td [routerLink]="['products', product.id]">{{product.price}}</td>
+      <td [routerLink]="['products', product.id]">{{product.color}}</td>
+      <td [routerLink]="['products', product.id]">{{product.status_id === 1 ? 'Active' : 'InActive'}}</td>
+      <td [routerLink]="['products', product.id]">{{product.date}}</td>
+    </tr>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </table>
+</div>
+</div>

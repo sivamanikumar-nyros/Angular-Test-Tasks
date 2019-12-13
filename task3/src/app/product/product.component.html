@@ -1,0 +1,20 @@
+<div class="container" id = "pageMargin">
+  <h2 class="heading">Product Details</h2>
+  <table class="container" style="margin-bottom: 100px">
+    <tr>
+      <th>Id</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>{{product.id}}</td>
+      <td>{{product.productname}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.color}}</td>
+      <td>{{product.status_id === 1 ? 'Active' : 'InActive'}}</td>
+    </tr>
+  </table>
+  <button class="btn btn-warning"><a routerLink="/" class="nav-link">Back</a></button>
+</div>
