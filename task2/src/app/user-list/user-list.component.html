@@ -1,0 +1,32 @@
+<!-- <p>Message from parent: {{userObj}}</p> -->
+<div class="container" id = "pageMargin">
+  <h2 class="heading">Users List</h2>
+  <div class="row search">
+    <!-- <div class="col-md-8">
+      <button class="btn btn-success" (click)="testing()">Create New User</button>
+    </div> -->
+    <div class="col-md-1">
+      <p style="margin-top: 9%"><b>Search: </b></p>
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="Search by FirstName " [(ngModel)]="term">
+    </div>
+  </div>
+  <table class="container" style="margin-bottom: 100px">
+    <tr>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Email</th>
+      <th>PhoneNumber</th>
+      <th colspan="5">Actions</th>
+    </tr>
+    <tr *ngFor = "let user of users |filter:term" id="users">
+      <td>{{user.fname}}</td>
+      <td>{{user.lname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phone}}</td>
+      <td><button class="btn btn-warning" (click)="EditUser(user,user.id)"><img src="https://img.icons8.com/android/24/000000/edit.png"> Edit</button></td>
+      <td><button (click)="deleteUser(user.id)" class="btn btn-danger"><img src="https://img.icons8.com/material/24/000000/delete-forever--v2.png"> Delete</button></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,52 @@
+<div class="container" id = "pageMargin">
+  
+  <app-user-list [userObj]="appParentMessage" [Appusers]="users" (user_data)="EditUserInfo($event)"></app-user-list>
+  <h2 class="heading">{{title}}</h2>
+  <div class="userCreationPage">
+    <form [formGroup]="userForm">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{title}}</h3>
+          
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="fname">First Name:</label>
+            <input type="text" formControlName="fname" id="fname" placeholder="firstname" [(ngModel)]="firstname" [ngClass]="{ 'is-invalid': submitted && fval.fname.errors }" class="form-control">
+            <div *ngIf="submitted && fval.fname.errors" class="invalid-feedback">
+                <div *ngIf="fval.fname.errors.required && val" ><span class="errors">First Name is required</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name:</label>
+            <input type="text" formControlName="lname" id="lname" placeholder="lastname" [(ngModel)]="lastname" [ngClass]="{ 'is-invalid': submitted && fval.lname.errors }" class="form-control">
+            <div *ngIf="submitted && fval.lname.errors" class="invalid-feedback">
+                <div *ngIf="fval.lname.errors.required && val"><span class="errors">Last Name is required</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" id="email" [(ngModel)]="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Enter email here"/>
+            <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+              <div *ngIf="fval.email.errors.required && val"><span class="errors">Email is required</span></div>
+              <div *ngIf="fval.email.errors.email"><span class="errors">Enter valid email address</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="phone" formControlName="phone" id="phone" [(ngModel)]="phone" minlength=10 maxlength=10 OnlyNumber="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.phone.errors }" placeholder="Enter Phone here"/>
+            <div *ngIf="submitted && fval.phone.errors" class="invalid-feedback">
+              <div *ngIf="fval.phone.errors.required && val"><span class="errors">Phone is required</span></div>
+              <div *ngIf="fval.phone.errors.minlength"><span class="errors">Please enter valid phone number</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <button *ngIf="title ==='Add New User'" type="submit" class="btn btn-success" (click)="addNewUser()" >{{updateBtn}}</button>
+          <button *ngIf="title ==='Edit User'" type="submit" class="btn btn-success" (click)="updateUser()">{{updateBtn }}</button>
+          <button *ngIf="title ==='Create New User'" type="submit" class="btn btn-success" (click)="addNewUser()">{{createBtn }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
