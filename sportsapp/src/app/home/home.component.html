@@ -1,0 +1,113 @@
+<div class="container list_content">
+	<div align="right">
+	  <button class="btn btn-primary btn-sm" (click)="createBtn()" data-toggle="modal" data-target="#exampleModal">Create Team</button>
+  </div>
+	<table class="table table-hover list_content">
+		<thead>
+			<td>S.No</td>
+			<td>Team Name</td>
+			<td>Sport Name</td>
+			<td>Actions</td>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of teams; let i = index">
+				<td>{{i+1}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.sport}}</td>
+				<td>
+					<button class="btn btn-warning" (click)="inviteTeam()" data-toggle="modal" data-target="#inviteModal">Invite</button>
+					<button class="btn btn-danger btn-sm action_btn" (click)="getDeleteTeam(item.id)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Modal -->
+	<div class="modal fade modal_block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<!-- Form  -->
+	        <form [formGroup]="teamform" (ngSubmit)="createTeam()">
+            <div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Name" formControlName="name" class="form-control" [ngModel]="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required"> Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Sport</label>
+                    <select class="form-control" id="" formControlName="sport" [ngClass]="{ 'is-invalid': submitted && f.sport.errors }">
+                    	<option>Cricket</option>
+                    	<option>Basketball</option>
+                    	<option>Badminton</option>
+                    	<option>Volleyball</option>
+                    </select>
+                      <div *ngIf="submitted && f.sport.errors.required" class="invalid-feedback">
+                        <div *ngIf="f.sport.errors.required"> Sport is required</div>
+                    </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+			        <button class="btn btn-secondary" (click)="onReset()" data-dismiss="modal">Close</button>
+			        <button type="submit" class="btn btn-primary">Create</button>
+			      </div>
+        </form>
+        <!-- Form End -->
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+  <!-- Delete modal  -->
+
+	<div class="modal fade modal_block" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel"> Delete Team</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<b>Are you sure ?</b>
+	      </div>
+	      <div class="modal-footer">
+	        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-danger" (click)="deleteTeam()">Delete</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade modal_block" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel"> Invite Members</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<b>Are you sure to invite members</b>
+	      </div>
+	      <div class="modal-footer">
+	        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-danger" (click)="inviteTeam()">Invite</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+</div>
